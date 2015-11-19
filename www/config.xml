@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="nl.smapps.brandweerermelo" version="1.0.0">
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>BRW Ermelo</name>
+
+    <description>
+	App van Brandweer Ermelo; alle geboorde putten en brandkranen.
+    </description>
+    <preference name='phonegap-version' value='cli-5.2.0' />
+	<preference name="permissions" value="none"/>
+	<preference name="orientation" value="portrait"/>
+	<preference name="target-device" value="phone"/>
+	
+	<preference name="DisallowOverscroll" value="true" />
+	<preference name="fullscreen" value="false"/>
+	<preference name="webviewbounce" value="false"/>
+	
+	<preference name="prerendered-icon" value="true"/>
+	
+	<preference name="stay-in-webview" value="false"/>
+	<preference name="ios-statusbarstyle" value="black-opaque"/>
+	<preference name="detect-data-types" value="true"/>
+	<preference name="exit-on-suspend" value="false"/>
+	
+	<preference name="disable-cursor" value="false"/>
+	<preference name="android-minSdkVersion" value="14"/>
+	<preference name="android-installLocation" value="auto"/>
+	
+	<gap:plugin name="org.apache.cordova.geolocation"/>
+	<gap:plugin name="org.apache.cordova.splashscreen"/>
+	<gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
+
+	
+	<preference name="android-windowSoftInputMode" value="adjustResize"/>
+		
+
+	
+	<icon src="./images/system/57.png" gap:platform="ios" width="57" height="57" />
+	<icon src="./images/system/72.png" gap:platform="ios" width="72" height="72" />
+	<icon src="./images/system/114.png" gap:platform="ios" width="114" height="114" />
+	
+	<icon src="./images/system/48.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="./images/system/48.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="./images/system/72.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="./images/system/96.png" gap:platform="android" gap:density="xhdpi" />
+	
+	<gap:splash src="splash.png" />
+	<gap:splash src="./images/system/android/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
+	<gap:splash src="./images/system/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
+	<gap:splash src="./images/system/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
+	<gap:splash src="./images/system/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
+	<gap:splash src="./images/system/android/xxhdpi.png" gap:platform="android" gap:qualifier="xxhdpi" />
+	<gap:splash src="./images/system/android/xxxhdpi.png" gap:platform="android" gap:qualifier="xxxhdpi" />
+
+	<gap:splash src="./images/system/ios/Default~iphone.png" gap:platform="ios" width="320" height="480"/>
+	<gap:splash src="./images/system/ios/Default@2x~iphone.png" gap:platform="ios" width="640" height="960"/>
+	<gap:splash src="./images/system/ios/Default-Portrait~ipad.png" gap:platform="ios" width="768" height="1024"/>
+	<gap:splash src="./images/system/ios/Default-Portrait@2x~ipad.png" gap:platform="ios" width="1536" height="2048"/>
+	<gap:splash src="./images/system/ios/Default-568h@2x~iphone.png" gap:platform="ios"  width="640" height="1136"/>
+	<gap:splash src="./images/system/ios/Default-667h.png" gap:platform="ios" width="750" height="1334"/>
+	<gap:splash src="./images/system/ios/Default-736h.png" gap:platform="ios" width="1242" height="2208"/>
+
+
+	<preference name="show-splash-screen-spinner" value="false"/>
+	<preference name="auto-hide-splash-screen" value="true" />
+	<preference name="AutoHideSplashScreen" value="true" />
+	<preference name="FadeSplashScreen" value="true" />
+	<preference name="fade-splash-screen-duration" value="1" />	
+
+
+    <author href="https://www.smapps.nl" email="info@smapps.nl">
+        SMAPPS
+    </author>
+
+</widget>
