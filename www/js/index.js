@@ -31,11 +31,13 @@
     function getReady(){
       if(typeof navigator.device == "undefined")
 	  {
+		  alert("HIERO" + navigator.device);
 		   document.addEventListener('deviceready', onDeviceReady, false);
 
 	  }
 	  else
 	  {
+		alert("HIERO" + navigator.device);
 		init('off');
 	  }
 	}
