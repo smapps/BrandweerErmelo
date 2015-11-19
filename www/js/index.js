@@ -20,7 +20,7 @@
     function onDeviceReady()
 	{
 		//document.addEventListener('deviceready', getReady, false);
-		return navigator.geolocation.getCurrentPosition();
+		//return navigator.geolocation.getCurrentPosition();
 		init('off');
 	}	
    
