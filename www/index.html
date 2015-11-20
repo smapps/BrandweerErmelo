@@ -35,18 +35,19 @@
 			<div style="text-align: center; line-height: 30px; width:100%; height: 30px;  background: #cc0001; position: fixed; top: 0px; left:0px;">
 			<img src="icon.png" height="25"> 
 			</div>
-			<div style="width:100%; height: 80px;  background: #cc0001; position: fixed; bottom: 0px; left:0px;">
+		
+			<div style="width:100%; height: 120px;  background: #cc0001; position: fixed; bottom: 0px; left:0px;">
 				<p align="center" style="margin: 0; padding: 0; ">
+					<div style="text-align: center; position: relative; font-family: 'Arial'; float: left; width: 100%; height: 40px; line-height: 12px; color: #FFF; font-size: 11px;" class="lastReport"></div>
 					<div style="text-align: center; position: relative; font-family: 'Arial'; float: left; width: 100%; height: 40px; line-height: 40px; color: #FFF; font-size: 14px;" class="refresh">Spring naar mijn locatie</div>
 					<div style="text-align: center; position: relative; font-family: 'Arial'; float: left; width: 100%; height: 40px; line-height: 40px; color: #FFF; font-size: 14px;" class="track">GPS Volgen</div>
 					<div style="text-align: center; position: relative; font-family: 'Arial'; float: left; width: 100%; height: 40px; line-height: 40px; color: #FFF; font-size: 14px; display: none;" class="track2">Stop met volgen</div></p>
 			</div>
 	
-        <script type="text/javascript" src="cordova.js"></script>
-		<script src="OpenLayers.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>		
         <script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-		
+		<script src="OpenLayers.js"></script>
   <script>
 
 var lat=52.2910937;
@@ -1053,12 +1054,42 @@ function init(watch) {
 	{
 		geolocate.watch = true;
 	}
+	/*function setCenter(lat,lon) {
+		var lonlat = new OpenLayers.LonLat(lon, lat);
+		map.panTo(lonlat);
+	}*/
 	firstGeolocation = true;
 	geolocate.activate();
 }
 $(document).ready(function()
 {
 	//init('off');
+	$.ajax({
+		type: 'POST',
+		url: 'http://haageninternet.nl/klanten/brandweer/php_p2000_getLatest.php', 
+		async: false,
+		success: function(returnData)
+		{
+			if(window.localStorage["laatsteMelding"] != returnData)
+			{
+				window.localStorage["laatsteMelding"] = returnData;
+			}
+		},
+		error: function(returnData){
+		//	gotoURLString = 's2.html';
+		}
+	});
+	var p2000_data = window.localStorage["laatsteMelding"].split("{}");
+	var p2000Lng = p2000_data[0];
+	var p2000Lat = p2000_data[1];
+	var p2000Txt = p2000_data[2];
+	$(".lastReport").text("Melding: " + p2000Txt);
+	
+	$(".lastReport").on("click", function()
+	{
+		alert("melding");
+		setCenter(p2000Lat,p2000Lng)
+	});
 	$(".refresh").on("click", function()
 	{
 		$("#map").html('');
@@ -1080,6 +1111,8 @@ $(document).ready(function()
 		$(".track").show();
 		init('off');
 	});
+	
+	
 });
 
 </script>
