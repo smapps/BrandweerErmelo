@@ -64,7 +64,7 @@ var style = {
 		//Initialise the 'map' object
 
 function init(watch, vlon, vlat) {
-
+alert(vlon, vlat);
 	OpenLayers.Util.onImageLoadError = function(){
 		 this.src = "noImage.png";
 	};
@@ -94,6 +94,7 @@ function init(watch, vlon, vlat) {
 	map.addLayer(newLayer);
 	if((vlon != '0') && (vlat != '0'))
 	{
+		alert('set center');
 		var lonLat = new OpenLayers.LonLat(vlon, vlat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
 		map.setCenter (lonLat, zoom);
 	}
@@ -1087,7 +1088,7 @@ $(document).ready(function()
 	var p2000Lng = p2000_data[0];
 	var p2000Lat = p2000_data[1];
 	var p2000Txt = p2000_data[2];
-	$(".lastReport").text("Melding: " + p2000Txt);
+	$(".lastReport").text(p2000Txt);
 	
 	$(".lastReport").on("click", function()
 	{
