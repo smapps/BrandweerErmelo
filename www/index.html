@@ -63,7 +63,7 @@ var style = {
 }; 
 		//Initialise the 'map' object
 
-function init(watch, lon, lat) {
+function init(watch, vlon, vlat) {
 
 	OpenLayers.Util.onImageLoadError = function(){
 		 this.src = "noImage.png";
@@ -92,9 +92,9 @@ function init(watch, lon, lat) {
 	//var newLayer = new OpenLayers.Layer.OSM("Local Tiles", "tiles/${z}/${x}/${y}.png", {numZoomLevels: 19, alpha: true, isBaseLayer: true});
 	var newLayer = new OpenLayers.Layer.OSM();
 	map.addLayer(newLayer);
-	if((lon != 0) && (lat != 0))
+	if((vlon != '0') && (vlat != '0'))
 	{
-		var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+		var lonLat = new OpenLayers.LonLat(vlon, vlat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
 		map.setCenter (lonLat, zoom);
 	}
 	if( ! map.getCenter() ){
