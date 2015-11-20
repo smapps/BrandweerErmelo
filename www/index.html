@@ -64,7 +64,6 @@ var style = {
 		//Initialise the 'map' object
 
 function init(watch, vlon, vlat) {
-alert(vlon, vlat);
 	OpenLayers.Util.onImageLoadError = function(){
 		 this.src = "noImage.png";
 	};
@@ -93,15 +92,13 @@ alert(vlon, vlat);
 	var newLayer = new OpenLayers.Layer.OSM();
 	map.addLayer(newLayer);
 	if((vlon != '0') && (vlat != '0'))
-	{
-		alert('set center');
-		var lonLat = new OpenLayers.LonLat(vlon, vlat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-		map.setCenter (lonLat, zoom);
+	{	map.setCenter(new OpenLayers.LonLat(vlon, vlat), 5);
+	//map.setCenter (lonLat, zoom);
 	}
-	if( ! map.getCenter() ){
-		var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-		map.setCenter (lonLat, zoom);
-	}
+	//if( ! map.getCenter() ){
+	//	var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+	//	map.setCenter (lonLat, zoom);
+	//}
 	
 	
 	
