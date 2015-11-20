@@ -63,7 +63,7 @@ var style = {
 }; 
 		//Initialise the 'map' object
 
-function init(watch) {
+function init(watch, lon, lat) {
 
 	OpenLayers.Util.onImageLoadError = function(){
 		 this.src = "noImage.png";
@@ -92,7 +92,11 @@ function init(watch) {
 	//var newLayer = new OpenLayers.Layer.OSM("Local Tiles", "tiles/${z}/${x}/${y}.png", {numZoomLevels: 19, alpha: true, isBaseLayer: true});
 	var newLayer = new OpenLayers.Layer.OSM();
 	map.addLayer(newLayer);
-
+	if((lon != 0) && (lat != 0))
+	{
+		var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+		map.setCenter (lonLat, zoom);
+	}
 	if( ! map.getCenter() ){
 		var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
 		map.setCenter (lonLat, zoom);
@@ -1087,29 +1091,29 @@ $(document).ready(function()
 	
 	$(".lastReport").on("click", function()
 	{
-		alert("melding");
-		setCenter(p2000Lat,p2000Lng)
+		//alert("melding");
+		init('off',p2000Lat,p2000Lng)
 	});
 	$(".refresh").on("click", function()
 	{
 		$("#map").html('');
 		$(".track").show();
 		$(".track2").hide();
-		init('off');
+		init('off',0,0);
 	});
 	$(".track").on("click", function()
 	{
 		$("#map").html('');
 		$(".track").hide();
 		$(".track2").show();
-		init('on');
+		init('on',0,0);
 	});
 	$(".track2").on("click", function()
 	{
 		$("#map").html('');
 		$(".track2").hide();
 		$(".track").show();
-		init('off');
+		init('off',0,0);
 	});
 	
 	
