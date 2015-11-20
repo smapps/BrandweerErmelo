@@ -21,7 +21,7 @@
 	{
 		//document.addEventListener('deviceready', getReady, false);
 		//return navigator.geolocation.getCurrentPosition();
-		init('off');
+		init('off',0,0);
 	}	
    
     // deviceready Event Handler
@@ -36,7 +36,7 @@
 	  }
 	  else
 	  {
-		init('off');
+		init('off',0,0);
 	  }
 	}
 	
