@@ -92,13 +92,15 @@ function init(watch, vlon, vlat) {
 	var newLayer = new OpenLayers.Layer.OSM();
 	map.addLayer(newLayer);
 	if((vlon != '0') && (vlat != '0'))
-	{	map.setCenter(new OpenLayers.LonLat(vlon, vlat), 5);
+	{
+		lon = vlon;
+		lat = vlat;
 	//map.setCenter (lonLat, zoom);
 	}
-	//if( ! map.getCenter() ){
-	//	var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-	//	map.setCenter (lonLat, zoom);
-	//}
+	if( ! map.getCenter() ){
+		var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+		map.setCenter (lonLat, zoom);
+	}
 	
 	
 	
