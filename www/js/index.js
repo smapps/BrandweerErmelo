@@ -20,8 +20,9 @@
     function onDeviceReady()
 	{
 		//document.addEventListener('deviceready', getReady, false);
-		return navigator.geolocation.getCurrentPosition();
-		
+		//return navigator.geolocation.getCurrentPosition();
+		init('off');
+		window.plugin.statusbarOverlay.hide();
 	}	
    
     // deviceready Event Handler
@@ -36,7 +37,8 @@
 	  }
 	  else
 	  {
-		init('off');
+		  window.plugin.statusbarOverlay.hide();
+			init('off');
 	  }
 	}
 	
