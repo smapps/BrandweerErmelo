@@ -93,9 +93,16 @@ function init(watch, vlon, vlat) {
 	map.addLayer(newLayer);
 	if((vlon != '0') && (vlat != '0'))
 	{
-		lon = vlon;
-		lat = vlat;
+		alert("GO TO INCIDENT >>  " + vlon + " <> " + vlat);
+		map.setCenter(
+		    new OpenLayers.LonLat(vlon, vlat).transform(
+		        new OpenLayers.Projection("EPSG:4326"),
+		        map.getProjectionObject()
+		    ), 5
+		);
+	
 	//map.setCenter (lonLat, zoom);
+   
 	}
 	if( ! map.getCenter() ){
 		var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
@@ -1068,26 +1075,31 @@ function init(watch, vlon, vlat) {
 $(document).ready(function()
 {
 	//init('off');
-	$.ajax({
-		type: 'POST',
-		url: 'http://haageninternet.nl/klanten/brandweer/php_p2000_getLatest.php', 
-		async: false,
-		success: function(returnData)
-		{
-			if(window.localStorage["laatsteMelding"] != returnData)
+	updateIncident()
+	setInterval(updateIncident, 60000);
+	function updateIncident()
+	{
+		$.ajax({
+			type: 'POST',
+			url: 'http://haageninternet.nl/klanten/brandweer/php_p2000_getLatest.php', 
+			async: false,
+			success: function(returnData)
 			{
-				window.localStorage["laatsteMelding"] = returnData;
+				if(window.localStorage["laatsteMelding"] != returnData)
+				{
+					window.localStorage["laatsteMelding"] = returnData;
+				}
+			},
+			error: function(returnData){
+			//	gotoURLString = 's2.html';
 			}
-		},
-		error: function(returnData){
-		//	gotoURLString = 's2.html';
-		}
-	});
-	var p2000_data = window.localStorage["laatsteMelding"].split("{}");
-	var p2000Lng = p2000_data[0];
-	var p2000Lat = p2000_data[1];
-	var p2000Txt = p2000_data[2];
-	$(".lastReport").text(p2000Txt);
+		});
+		var p2000_data = window.localStorage["laatsteMelding"].split("{}");
+		var p2000Lng = p2000_data[0];
+		var p2000Lat = p2000_data[1];
+		var p2000Txt = p2000_data[2];
+		$(".lastReport").html("<p>" + p2000Txt + "</p>");
+	}
 	
 	$(".lastReport").on("click", function()
 	{
