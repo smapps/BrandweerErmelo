@@ -21,8 +21,7 @@
 	{
 		//document.addEventListener('deviceready', getReady, false);
 		//return navigator.geolocation.getCurrentPosition();
-		init('off');
-		window.plugin.statusbarOverlay.hide();
+		init('off',0,0);
 	}	
    
     // deviceready Event Handler
@@ -37,8 +36,7 @@
 	  }
 	  else
 	  {
-		  window.plugin.statusbarOverlay.hide();
-			init('off');
+		init('off',0,0);
 	  }
 	}
 	
