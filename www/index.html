@@ -1003,9 +1003,7 @@ function init(watch, vlon, vlat) {
 		};
 
 		
-		if(inciSet === true)
-		{
-			inciSet = false;
+		
 		
 
 			//alert("geo");
@@ -1049,10 +1047,14 @@ function init(watch, vlon, vlat) {
 					),
 					circle
 				]);
-				if (firstGeolocation) {
-					pulsate(circle);
-					firstGeolocation = false;
-					this.bind = true;
+				if(inciSet === true)
+				{
+					inciSet = false;
+					if (firstGeolocation) {
+						pulsate(circle);
+						firstGeolocation = false;
+						this.bind = true;
+					}
 				}
 			});
 			geolocate.events.register("locationfailed",this,function() {
@@ -1069,7 +1071,7 @@ function init(watch, vlon, vlat) {
 			
 			firstGeolocation = true;
 			geolocate.activate();
-		}
+		
 }
 $(document).ready(function()
 {
