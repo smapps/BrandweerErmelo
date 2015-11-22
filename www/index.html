@@ -1002,16 +1002,16 @@ function init(watch, vlon, vlat) {
 			window.resizeInterval = window.setInterval(resize, 50, point, radius);
 		};
 
-		var bindIt = true;
+		
 		if(inciSet === true)
 		{
-			bindIT = false;
-		}
+			inciSet = false;
+		
 
 			//alert("geo");
 			
 			var geolocate = new OpenLayers.Control.Geolocate({
-				bind: bindIt,
+				bind: true,
 				geolocationOptions: {
 					enableHighAccuracy: true,
 					maximumAge: 0,
@@ -1052,7 +1052,7 @@ function init(watch, vlon, vlat) {
 				if (firstGeolocation) {
 					pulsate(circle);
 					firstGeolocation = false;
-					this.bind = bindIt;
+					this.bind = true;
 				}
 			});
 			geolocate.events.register("locationfailed",this,function() {
@@ -1069,7 +1069,7 @@ function init(watch, vlon, vlat) {
 			
 			firstGeolocation = true;
 			geolocate.activate();
-
+		}
 }
 $(document).ready(function()
 {
