@@ -36,7 +36,7 @@
 	<preference name="android-windowSoftInputMode" value="adjustResize"/>
 		
 
-	
+	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<icon src="./images/system/57.png" gap:platform="ios" width="57" height="57" />
 	<icon src="./images/system/72.png" gap:platform="ios" width="72" height="72" />
 	<icon src="./images/system/114.png" gap:platform="ios" width="114" height="114" />
