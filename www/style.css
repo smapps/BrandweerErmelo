@@ -83,7 +83,7 @@ label{
 input{
 	margin-right:20px;	
 }
-.cb
+.cb, .cbOfflineMaps
 {
 	display: none;	
 }
@@ -104,4 +104,18 @@ input[type="checkbox"] + label span
 input[type="checkbox"]:checked + label span
 {
     background-position: -40px 0px ;
+}
+.saveSettings{
+	display:block;
+	padding:10px;
+	border: 1px solid #FFF;	
+	width: 200px;
+	text-align:center;
+}
+.downloadMaps{
+	display:none;
+	padding:10px;
+	border: 1px solid #FFF;	
+	width: 200px;
+	text-align:center;
 }
