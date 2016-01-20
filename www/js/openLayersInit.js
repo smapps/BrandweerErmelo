@@ -395,7 +395,7 @@ $(document).ready(function()
 	{
 	            var that = this,
                     App = new DownloadApp(),
-                    fileName = " + window.localStorage["versionCodeMaps"] + ".zip",
+                    fileName = window.localStorage["versionCodeMaps"] + ".zip",
                     folderName = "content";
             console.log("zip button clicked");
             App.unzip(folderName, fileName,
