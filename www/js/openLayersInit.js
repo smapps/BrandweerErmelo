@@ -391,6 +391,18 @@ $(document).ready(function()
 		        }
 		});	
 	});
+		$(".downloadMapsGebruiken").on("click", function()
+	{
+	            var that = this,
+                    App = new DownloadApp(),
+                    fileName = "ft-p.zip",
+                    folderName = "content";
+            console.log("zip button clicked");
+            App.unzip(folderName, fileName,
+                    /*success*/function() { alert("Unzipped and assigned"); },
+                    /*fail*/function(error) { alert("Unzip failed: " + error.code); }
+            );
+	});
 	$(".lastReport").on("click", function()
 	{
 		if(window.localStorage["pLng"] != "")
