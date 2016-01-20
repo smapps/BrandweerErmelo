@@ -345,7 +345,7 @@ $(document).ready(function()
 			$(".track2").hide();
 			init('off', window.localStorage["pLng"], window.localStorage["pLat"])
 		}else{
-			//navigator.notification.alert("Locatie niet beschikbaar.", function(){  }, "Melding", "OK");
+			navigator.notification.alert("Voor deze melding zijn geen coördinaten beschikbaar", function(){  }, "Geen locatie beschikbaar", "OK");
 		}
 	});
 	$(".refresh").on("click", function()
