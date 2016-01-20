@@ -371,7 +371,7 @@ $(document).ready(function()
 		//Download ZIP
         var that = this,
         App = new DownloadApp(),
-        fileName = "ft-p.zip",
+        fileName = "latest.zip",
         uri = encodeURI("http://brandweer.showittome.nl/files/maps_" + window.localStorage["versionCodeMaps"] + ".zip"),
         folderName = "content";
         console.log("load button clicked");
@@ -395,7 +395,7 @@ $(document).ready(function()
 	{
 	            var that = this,
                     App = new DownloadApp(),
-                    fileName = window.localStorage["versionCodeMaps"] + ".zip",
+                    fileName = "latest.zip",
                     folderName = "content";
             console.log("zip button clicked");
             App.unzip(folderName, fileName,
