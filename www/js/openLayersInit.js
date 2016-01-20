@@ -1,19 +1,39 @@
 
-		var lat=52.2910937;
-		var lon=5.606251;
-		var zoom=15;
-		
-		var map; //complex object of type OpenLayers.Map
-		
-		var style = {
-			fillColor: '#000',
-			fillOpacity: 0.1,
-			strokeWidth: 0
-		}; 
-		//Initialise the 'map' object
+var lat=52.2910937;
+var lon=5.606251;
+var zoom=15;
+
+var map; //complex object of type OpenLayers.Map
+
+var style = {
+	fillColor: '#000',
+	fillOpacity: 0.1,
+	strokeWidth: 0
+}; 
+//Initialise the 'map' object
 
 function init(watch, vlon, vlat) {
-		
+	
+	if (window.localStorage["useOfflineMaps"]=="true"){
+
+		if (window.localStorage["versionCodeMaps"]){
+			alert(window.localStorage["versionCodeMaps"]);
+			 $.ajax({
+			        url: 'http://brandweer.showittome.nl/php/checkMapsVersion.php',
+			        type: 'get',
+			        async: false,
+			        success: function(data) {
+				        alert(data);
+		                if (window.localStorage["versionCodeMaps"] < data){
+			             	$(".downloadMaps").show();
+		                }
+			        }
+			});	
+		}else{
+			$(".downloadMaps").show();
+		}
+	}
+	
 	//alert(window.localStorage["capCodes"]);
 	var toSplit = window.localStorage["capCodes"];
 	var capSplit = toSplit.split(",");
@@ -28,6 +48,11 @@ function init(watch, vlon, vlat) {
 			$(field).prop('checked', true);
 		}	
 	}
+	
+		if(window.localStorage["useOfflineMaps"] == "true"){
+			 $(".cbOfflineMaps").prop('checked', true);
+		}
+	
 	updateIncident();
 	
 	OpenLayers.Util.onImageLoadError = function(){
@@ -92,8 +117,7 @@ function init(watch, vlon, vlat) {
 	                markers = html;
 	        }
 	});
-	
-	
+
 	//Loop through the markers array
 	for (var i=0; i<markers.length; i++) {
 	  console.log(i);
@@ -312,8 +336,8 @@ $(document).ready(function()
 {
 	if(!window.localStorage["capCodes"])
 	{
-		setTimeout(function(){ $("#popupSettings").show() }, 1000);
-	}	
+		$("#popupSettings").show();
+	}
 	updateIncident();
 	setInterval(updateIncident, 60000);
 	$(".saveSettings").on("click", function()
@@ -329,11 +353,43 @@ $(document).ready(function()
 				window.localStorage["capCodes"] += '' + $(this).val() + ',';
 			}		
 		});	
+		
+		if( $(".cbOfflineMaps").prop("checked") == true){
+			window.localStorage["useOfflineMaps"] = "true"
+		}else{
+			window.localStorage["useOfflineMaps"] = "false"
+		}
+				
 		$("#map").html('');
 		$(".track").show();
 		$(".track2").hide();
 		init('off', 0, 0);
 		$("#popupSettings").hide();
+	});
+	$(".downloadMaps").on("click", function()
+	{
+		//Download ZIP
+        var that = this,
+        App = new DownloadApp(),
+        fileName = "ft-p.zip",
+        uri = encodeURI("http://brandweer.showittome.nl/files/maps_" + window.localStorage["versionCodeMaps"] + ".zip"),
+        folderName = "content";
+        console.log("load button clicked");
+        document.getElementById("statusPlace").innerHTML += "<br/>Loading: " + uri;
+        App.load(uri, folderName, fileName,
+                /*progress*/function(percentage) { document.getElementById("statusPlace").innerHTML += "<br/>" + percentage + "%"; },
+                /*success*/function(entry) { document.getElementById("statusPlace").innerHTML += "<br/>Zip saved to: " + entry.toURL(); },
+                /*fail*/function() { document.getElementById("statusPlace").innerHTML += "<br/>Failed load zip: " + that.uri; }
+        );
+		
+		 $.ajax({
+		        url: 'http://brandweer.showittome.nl/php/checkMapsVersion.php',
+		        type: 'get',
+		        async: false,
+		        success: function(html) {
+	               // window.localStorage["versionCodeMaps"] = html;
+		        }
+		});	
 	});
 	$(".lastReport").on("click", function()
 	{
@@ -345,7 +401,7 @@ $(document).ready(function()
 			$(".track2").hide();
 			init('off', window.localStorage["pLng"], window.localStorage["pLat"])
 		}else{
-			navigator.notification.alert("Voor deze melding is geen locatiebepaling beschikbaar",disMiss, "Geen locatie beschikbaar", "Oke");
+			navigator.notification.alert("Locatie niet beschikbaar.", function(){  }, "Melding", "OK");
 		}
 	});
 	$(".refresh").on("click", function()
@@ -371,7 +427,3 @@ $(document).ready(function()
 	});
 	
 });
-function disMiss()
-{
-//	
-}
