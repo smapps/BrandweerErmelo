@@ -377,9 +377,9 @@ $(document).ready(function()
         console.log("load button clicked");
         document.getElementById("statusPlace").innerHTML += "<br/>Loading: " + uri;
         App.load(uri, folderName, fileName,
-                /*progress*/function(percentage) { document.getElementById("statusPlace").innerHTML += "<br/>" + percentage + "%"; },
-                /*success*/function(entry) { document.getElementById("statusPlace").innerHTML += "<br/>Zip saved to: " + entry.toURL(); },
-                /*fail*/function() { document.getElementById("statusPlace").innerHTML += "<br/>Failed load zip: " + that.uri; }
+                /*progress*/function(percentage) { document.getElementById("statusPlace").innerHTML = "<br/>" + percentage + "%"; },
+                /*success*/function(entry) { document.getElementById("statusPlace").innerHTML = "<br/>Zip saved to: " + entry.toURL(); },
+                /*fail*/function() { document.getElementById("statusPlace").innerHTML = "<br/>Failed load zip: " + that.uri; }
         );
 		
 		 $.ajax({
