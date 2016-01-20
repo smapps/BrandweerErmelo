@@ -13,10 +13,7 @@
 		//Initialise the 'map' object
 
 function init(watch, vlon, vlat) {
-	if(!window.localStorage["capCodes"])
-	{
-		$("#popupSettings").show();
-	}	
+		
 	//alert(window.localStorage["capCodes"]);
 	var toSplit = window.localStorage["capCodes"];
 	var capSplit = toSplit.split(",");
@@ -313,7 +310,10 @@ function updateIncident()
 }
 $(document).ready(function()
 {
-	
+	if(!window.localStorage["capCodes"])
+	{
+		setTimeout(function(){ $("#popupSettings").show() }, 1000);
+	}	
 	updateIncident();
 	setInterval(updateIncident, 60000);
 	$(".saveSettings").on("click", function()
