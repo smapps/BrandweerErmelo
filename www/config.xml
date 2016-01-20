@@ -3,10 +3,10 @@
 
     <!-- versionCode is optional and Android only -->
 
-    <name>BRW Ermelo</name>
+    <name>BRW Veluwe-W</name>
 
     <description>
-	App van Brandweer Ermelo (online); alle geboorde putten en brandkranen.
+	App van Brandweer VNOG Cluster Veluwe-West; alle geboorde putten en brandkranen.
     </description>
     <preference name='phonegap-version' value='cli-5.2.0' />
 	<preference name="permissions" value="none"/>
