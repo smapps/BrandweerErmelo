@@ -8,9 +8,9 @@
          <link rel="stylesheet" href="maps.css" type="text/css" />
          <link rel="stylesheet" href="style.css" type="text/css" />
         <title>BRW Ermelo</title>
-		
+		<script src="cordova.js"></script>
     </head>
-    <body onload="getReady();">
+    <body onload="init('off',0,0);">
           <div id="map"></div>
           	<div id="topBar">
 				<div class="icon_brandweer">
@@ -38,8 +38,11 @@
 		<input type="checkbox" class="cb" name="checkbox" id="805270" value="805270"><label for="805270"><span></span></label>Putten</label><br>
 		<input type="checkbox" class="cb" name="checkbox" id="805310" value="805310"><label for="805310"><span></span></label>Nunspeet</label><br>
 		<input type="checkbox" class="cb" name="checkbox" id="805350" value="805350"><label for="805350"><span></span></label>Elspeet</label><br>
-		<input type="checkbox" class="cb" name="checkbox" id="805770" value="805770"><label for="805770"><span></span></label>OVD</label>
-		
+		<input type="checkbox" class="cb" name="checkbox" id="805770" value="805770"><label for="805770"><span></span></label>OVD</label><br>
+		<br>
+		<input type="checkbox" class="cbOfflineMaps" name="checkbox" id="offlinemaps" value="offlinemaps"><label for="offlinemaps"><span></span></label>Offline kaarten gebruiken?</label>
+		<p class="downloadMaps">Nieuwe kaart downloaden</p>
+		<div id="statusPlace"></div>
 		<p class="saveSettings">Instellingen sluiten</p>
 	</div>
         
@@ -47,6 +50,7 @@
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="OpenLayers.js"></script>
 		<script type="text/javascript" src="js/openLayersInit.js"></script>
+		<script type="text/javascript" src="js/download.js"></script>
 		<script>
 			$(".icon_settings").on("click", function(){
 					$("#popupSettings").show();
