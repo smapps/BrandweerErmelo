@@ -424,6 +424,8 @@ $(document).ready(function()
 				$("#unzipPopup").show();
 				$("#downloadPopup").hide();
 				
+				alert(entry.toURL);
+				
 				var that = this,
 				App = new DownloadApp(),
 				fileName = "latest.zip",
