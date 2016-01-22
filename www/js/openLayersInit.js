@@ -432,7 +432,7 @@ $(document).ready(function()
 				App.unzip(folderName, fileName, function() { 
 					alert("Unzipped and assigned"); 
 					$("#unzipPopup").hide();
-					window.localStorage["offlineMapsLocation"] = folderName;
+					window.localStorage["offlineMapsLocation"] = "/" + folderName;
 					init('off, 0, 0');
 				}, function(error) { 
 					alert("Uitpakken mislukt, bestand niet compleet gedownload."); 
