@@ -424,7 +424,7 @@ $(document).ready(function()
 				$("#unzipPopup").show();
 				$("#downloadPopup").hide();
 				
-				alert(entry.toURL);
+				alert(entry.toURL());
 				
 				var that = this,
 				App = new DownloadApp(),
