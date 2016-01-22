@@ -424,7 +424,7 @@ $(document).ready(function()
 				$("#unzipPopup").show();
 				$("#downloadPopup").hide();
 				
-				window.localStorage["offlineMapsLocation"] = entry.toURL().Replace("latest.zip","");
+				window.localStorage["offlineMapsLocation"] = entry.toURL().replace("latest.zip","");
 				
 				var that = this,
 				App = new DownloadApp(),
