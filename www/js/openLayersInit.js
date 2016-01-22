@@ -334,6 +334,10 @@ function updateIncident()
 }
 $(document).ready(function()
 {
+	$(".cb").on("click", function()
+	{
+		$(this).triggerClass("cbClick")	
+	});
 	if(!window.localStorage["capCodes"])
 	{
 		$("#popupSettings").show();
