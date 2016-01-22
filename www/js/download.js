@@ -76,22 +76,19 @@
             zip.unzip("cdvfile://localhost/persistent/" + folderName + "/" + fileName,
                       "cdvfile://localhost/persistent/" + folderName,
                     function(code) {
-                        /*console.log("result: " + code);
+                        console.log("result: " + code);
                         that.getFilesystem(
                                 function(fileSystem) {
                                     console.log("gotFS");
-                                    that.getFolder(fileSystem, folderName + "/ftpack", function (folder) {
-                                        /*document.getElementById("imgPlace").src = folder.nativeURL + "/img.jpg";
+                                    that.getFolder(fileSystem, folderName + "/tiles", function (folder) {
                                         folder.getFile("text.html", {create: false}, function (fileEntry) {
                                             fileEntry.file(function(file) {
                                                 var reader = new FileReader();
                                                 reader.onloadend = function (evt) {
-                                                    console.log("Read as text");
-                                                    console.log(evt.target.result);
-                                                    //document.getElementById("txtPlace").innerHTML = evt.target.result;
+                                                    //console.log("Read as text");
+                                                    //console.log(evt.target.result);
                                                     typeof that.success === ' function && that.success();'
                                                 };
-                                                reader.readAsText(file);
                                             }, function(error) {
                                                 console.log("Failed to get file");
                                                 typeof that.fail === 'function' && that.fail(error);
@@ -108,7 +105,6 @@
                                     console.log("failed to get filesystem: " + error.code);
                                     typeof that.fail === 'function' && that.fail(error);
                                 });
-                    */
                         
                     }
             );
