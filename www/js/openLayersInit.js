@@ -16,7 +16,10 @@ var style = {
 
 function init(watch, vlon, vlat) {
 	
-	
+	if(!window.localStorage["capCodes"])
+	{
+		$("#popupSettings").show();
+	}
 	if (window.localStorage["useOfflineMaps"]=="true"){
 
 		if (window.localStorage["versionCodeMaps"]){
@@ -377,10 +380,7 @@ $(document).ready(function()
 		}
 		
 	});
-	if(!window.localStorage["capCodes"])
-	{
-		$("#popupSettings").show();
-	}
+	
 	updateIncident();
 	setInterval(updateIncident, 60000);
 	$(".saveSettings").on("click", function()
