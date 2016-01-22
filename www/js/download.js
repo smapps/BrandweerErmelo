@@ -89,7 +89,7 @@
                                                 reader.onloadend = function (evt) {
                                                     //console.log("Read as text");
                                                     //console.log(evt.target.result);
-                                                    typeof that.success === ' function && that.success();'
+                                                    typeof that.success === 'function' && that.success();
                                                 };
                                             }, function(error) {
                                                 alert("Failed to get file");
