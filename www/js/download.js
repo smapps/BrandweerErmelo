@@ -76,11 +76,13 @@
             zip.unzip("cdvfile://localhost/persistent/" + folderName + "/" + fileName,
                       "cdvfile://localhost/persistent/" + folderName,
                     function(code) {
-                        console.log("result: " + code);
+                        alert("result: " + code);
                         that.getFilesystem(
                                 function(fileSystem) {
-                                    console.log("gotFS");
+                                    alert("gotFS");
+                                    
                                     that.getFolder(fileSystem, folderName + "/tiles", function (folder) {
+                                        alert("na getfolder");
                                         folder.getFile("text.html", {create: false}, function (fileEntry) {
                                             fileEntry.file(function(file) {
                                                 var reader = new FileReader();
@@ -90,19 +92,19 @@
                                                     typeof that.success === ' function && that.success();'
                                                 };
                                             }, function(error) {
-                                                console.log("Failed to get file");
+                                                alert("Failed to get file");
                                                 typeof that.fail === 'function' && that.fail(error);
                                             });
                                         }, function (error) {
-                                            console.log("failed to get file: " + error.code);
+                                            alert("failed to get file: " + error.code);
                                             typeof that.fail === 'function' && that.fail(error);
                                         });
                                     }, function (error) {
-                                        console.log("failed to get folder: " + error.code);
+                                        alert("failed to get folder: " + error.code);
                                         typeof that.fail === 'function' && that.fail(error);
                                     });
                                 }, function(error) {
-                                    console.log("failed to get filesystem: " + error.code);
+                                    alert("failed to get filesystem: " + error.code);
                                     typeof that.fail === 'function' && that.fail(error);
                                 });
                         
