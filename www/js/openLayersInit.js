@@ -402,7 +402,7 @@ $(document).ready(function()
                     fileName = "latest.zip",
                     folderName = "content";
             console.log("zip button clicked");
-            App.unzip(folderName, fileName, function() { alert("Unzipped and assigned"); });
+            App.unzip(folderName, fileName, function() { alert("Unzipped and assigned"); }, function(error) { alert("Unzip failed: " + error.code); });
 	});
 	$(".lastReport").on("click", function()
 	{
