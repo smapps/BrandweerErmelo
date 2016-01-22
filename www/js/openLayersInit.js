@@ -398,9 +398,9 @@ $(document).ready(function()
                     fileName = "latest.zip",
                     folderName = "content";
             console.log("zip button clicked");
-            App.unzip(folderName, fileName,
-                    /*success*/function() { alert("Unzipped and assigned"); },
-                    /*fail*/function(error) { alert("Unzip failed: " + error.code); }
+            App.unzip(folderName, fileName, function() {}, var progressCallback = function(progressEvent) {
+    $( "#progressbar" ).progressbar("value", Math.round((progressEvent.loaded / progressEvent.total) * 100));
+}; }
             );
 	});
 	$(".lastReport").on("click", function()
