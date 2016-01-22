@@ -163,3 +163,28 @@ input[type="checkbox"]:checked + label span
 	width: 200px;
 	text-align:center;
 }
+#downloadPopup
+{
+	background: #cc0001; width: 100%; height: 100%; text-align: center; color: #FFF; position: absolute; left: 0px; top: 0px; 
+	display: none;	
+	font-size: 10px;
+}
+.progressBar
+{
+	width: 50%;
+	border: 1px solid #FFF;
+	height; 30px;
+	margin: 0 auto;
+	position: relative;
+}
+.progressBarFill
+{
+	background: #FFF;
+	height: 30px;
+}
+#unzipPopup
+{
+	background: #cc0001; width: 100%; height: 100%; text-align: center; color: #FFF; position: absolute; left: 0px; top: 0px; 
+	display: none;	
+	font-size: 10px;
+}
