@@ -53,7 +53,7 @@ function init(watch, vlon, vlat) {
 	}
 	
 		if(window.localStorage["useOfflineMaps"] == "true"){
-			 $(".cbOfflineMaps").prop('checked', true);
+			 $(".cbOfflineMaps").attr('rel', 1);
 		}
 	
 	updateIncident();
@@ -348,15 +348,31 @@ $(document).ready(function()
 		
 		if($(this).attr('rel') == 1)
 		{
-			$(this).removeClass("cbClick")	
+			$(this).removeClass("cbClick");
 			$(this).attr('rel',0);
 		}
 		else
 		{
-			$(this).addClass("cbClick")	
+			$(this).addClass("cbClick");	
 			$(this).attr('rel',1);
 		}
 		//alert($(this).attr('rel'));
+	});
+	$(".cbOfflineMaps").on("click", function()
+	{
+		if($(this).attr('rel') == 1)
+		{
+			$(this).removeClass("cbClick");	
+			$(this).attr('rel',0);
+			$(".downloadMaps").hide();
+		}
+		else
+		{
+			$(this).addClass("cbClick");	
+			$(this).attr('rel',1);
+			$(".downloadMaps").show();
+		}
+		
 	});
 	if(!window.localStorage["capCodes"])
 	{
@@ -376,7 +392,7 @@ $(document).ready(function()
 			}		
 		});		
 		
-		if( $(".cbOfflineMaps").prop("checked") == true){
+		if( $(".cbOfflineMaps").attr("rel") == 1){
 			window.localStorage["useOfflineMaps"] = "true";
 		}else{
 			window.localStorage["useOfflineMaps"] = "false";
