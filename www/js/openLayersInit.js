@@ -382,19 +382,40 @@ $(document).ready(function()
 	});
 	$(".downloadMaps").on("click", function()
 	{
+		$("#downloadPopup").show();
+		$("#popupSettings").hide();
+		
 		//Download ZIP
-        var that = this,
-        App = new DownloadApp(),
-        fileName = "latest.zip",
-        uri = encodeURI("http://brandweer.showittome.nl/files/maps_" + window.localStorage["versionCodeMaps"] + ".zip"),
-        folderName = "content";
-        console.log("load button clicked");
-        document.getElementById("statusPlace").innerHTML += "<br/>Loading: " + uri;
-        App.load(uri, folderName, fileName,
-                /*progress*/function(percentage) { document.getElementById("statusPlace").innerHTML = "<br/>" + percentage + "%"; },
-                /*success*/function(entry) { document.getElementById("statusPlace").innerHTML = "<br/>Zip saved to: " + entry.toURL(); },
-                /*fail*/function() { document.getElementById("statusPlace").innerHTML = "<br/>Failed load zip: " + that.uri; }
-        );
+	        var that = this,
+	        App = new DownloadApp(),
+	        fileName = "latest.zip",
+	        uri = encodeURI("http://brandweer.showittome.nl/files/maps_" + window.localStorage["versionCodeMaps"] + ".zip"),
+	        folderName = "content";
+	        console.log("load button clicked");
+	        document.getElementById("statusPlace").innerHTML += "<br/>Loading: " + uri;
+	        App.load(uri, folderName, fileName,
+	                /*progress*/function(percentage) { $(".progressBarFill").css('width', percentage + '%')  },
+	                /*success*/function(entry) { 
+				$("#unzipPopup").show();
+				$("#downloadPopup").hide();
+				
+				var that = this,
+				App = new DownloadApp(),
+				fileName = "latest.zip",
+				folderName = "content";
+
+				App.unzip(folderName, fileName, function() { 
+					alert("Unzipped and assigned"); 
+					$("#unzipPopup").hide();
+				}, function(error) { alert("Unzip failed: " + error.code); });
+	                },
+	                /*fail*/function() { 
+	                	alert("Fout bij downloaden"); 
+	                	$("#popupSettings").hide();
+	                	$("#unzipPopup").hide();
+	                	$("#downloadPopup").hide();
+	                }
+	        );
 		
 		 $.ajax({
 		        url: 'http://brandweer.showittome.nl/php/checkMapsVersion.php',
@@ -405,15 +426,8 @@ $(document).ready(function()
 		        }
 		});	
 	});
-		$(".downloadMapsGebruiken").on("click", function()
-	{
-	            var that = this,
-                    App = new DownloadApp(),
-                    fileName = "latest.zip",
-                    folderName = "content";
-            console.log("zip button clicked");
-            App.unzip(folderName, fileName, function() { alert("Unzipped and assigned"); }, function(error) { alert("Unzip failed: " + error.code); });
-	});
+
+	
 	$(".lastReport").on("click", function()
 	{
 		if(window.localStorage["pLng"] != "")
