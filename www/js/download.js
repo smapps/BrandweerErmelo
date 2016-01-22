@@ -84,11 +84,13 @@
                                     that.getFolder(fileSystem, folderName + "/tiles", function (folder) {
                                         alert("na getfolder");
                                         folder.getFile("text.html", {create: false}, function (fileEntry) {
+                                            alert("na getfile");
                                             fileEntry.file(function(file) {
+                                                alert("na entry");
                                                 var reader = new FileReader();
                                                 reader.onloadend = function (evt) {
-                                                    //console.log("Read as text");
-                                                    //console.log(evt.target.result);
+                                                    alert("Read as text");
+                                                    alert(evt.target.result);
                                                     typeof that.success === 'function' && that.success();
                                                 };
                                             }, function(error) {
