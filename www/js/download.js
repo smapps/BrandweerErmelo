@@ -87,12 +87,14 @@
                                             alert("na getfile");
                                             fileEntry.file(function(file) {
                                                 alert("na entry");
-                                                var reader = new FileReader();
+                                                typeof that.success === 'function' && that.success();
+                                                alert("na success");
+                                                /*var reader = new FileReader();
                                                 reader.onloadend = function (evt) {
                                                     alert("Read as text");
                                                     alert(evt.target.result);
-                                                    typeof that.success === 'function' && that.success();
-                                                };
+                                                    
+                                                };*/
                                             }, function(error) {
                                                 alert("Failed to get file");
                                                 typeof that.fail === 'function' && that.fail(error);
