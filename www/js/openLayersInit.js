@@ -1,4 +1,6 @@
-
+$(function() {
+    FastClick.attach(document.body);
+});
 var lat=52.2910937;
 var lon=5.606251;
 var zoom=15;
