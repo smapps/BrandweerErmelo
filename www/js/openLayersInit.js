@@ -16,6 +16,7 @@ var style = {
 
 function init(watch, vlon, vlat) {
 	
+	
 	if (window.localStorage["useOfflineMaps"]=="true"){
 
 		if (window.localStorage["versionCodeMaps"]){
@@ -364,12 +365,14 @@ $(document).ready(function()
 		{
 			$(this).removeClass("cbClick");	
 			$(this).attr('rel',0);
+			window.localStorage["useOfflineMaps"] = "false";
 			$(".downloadMaps").hide();
 		}
 		else
 		{
 			$(this).addClass("cbClick");	
 			$(this).attr('rel',1);
+			window.localStorage["useOfflineMaps"] = "true";
 			$(".downloadMaps").show();
 		}
 		
@@ -396,7 +399,7 @@ $(document).ready(function()
 			window.localStorage["useOfflineMaps"] = "true";
 		}else{
 			window.localStorage["useOfflineMaps"] = "false";
-			window.localStorage["offlineMapsLocation"] = "";
+			//window.localStorage["offlineMapsLocation"] = "";
 		}
 				
 		$("#map").html('');
@@ -432,7 +435,7 @@ $(document).ready(function()
 				folderName = "content";
 
 				App.unzip(folderName, fileName, function() { 
-					alert("Unzipped and assigned"); 
+					//alert("Unzipped and assigned"); 
 					$("#unzipPopup").hide();
 					
 					init('off, 0, 0');
