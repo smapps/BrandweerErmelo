@@ -83,7 +83,33 @@ label{
 input{
 	margin-right:20px;	
 }
-.cb, .cbOfflineMaps
+.cb
+{
+	width: calc(100% - 50px);
+}
+.cb:before
+{
+	content: ' ';
+	position: absolute;
+	left:  0px;
+	width: 40px;
+	height: 40px;
+	background-image:url('images/icons/icon_checkbox.jpg');
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+.cb:hover::before
+{
+	content: ' ';
+	position: absolute;
+	left:  0px;
+	width: 40px;
+	height: 40px;
+	background-image:url('images/icons/icon_checkbox.jpg');
+	background-position: -40px 0px;
+	background-repeat: no-repeat;
+}
+.cbOfflineMaps
 {
 	display: none;	
 }
