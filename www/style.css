@@ -96,7 +96,7 @@ label{
 input{
 	margin-right:20px;	
 }
-.cb
+.cb, .cbOfflineMaps
 {
 	width: calc(100% - 50px);
 	height: 30px;
@@ -104,7 +104,7 @@ input{
 	padding-left: 50px;
 	padding-top: 10px;
 }
-.cb:before
+.cb:before, .cbOfflineMaps:before
 {
 	content: ' ';
 	position: absolute;
@@ -127,28 +127,7 @@ input{
 	background-position: -40px 0px;
 	background-repeat: no-repeat;
 }
-.cbOfflineMaps
-{
-	display: none;	
-}
-input[type="checkbox"] + label span
-{
-    display:inline-block;
-    width:40px;
-    height:40px;
-	padding-top: 12px;
-    margin:10px 5px 0px 0px;
-	clear: both;
-    vertical-align:middle;
-    background-image:url('images/icons/icon_checkbox.jpg');
-	background-position: 0px 0px;
-	background-repeat: no-repeat;
-    cursor:pointer;
-}
-input[type="checkbox"]:checked + label span
-{
-    background-position: -40px 0px ;
-}
+
 .saveSettings{
 	display:block;
 	padding:10px;
