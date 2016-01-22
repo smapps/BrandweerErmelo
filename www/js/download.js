@@ -76,19 +76,19 @@
             zip.unzip("cdvfile://localhost/persistent/" + folderName + "/" + fileName,
                       "cdvfile://localhost/persistent/" + folderName,
                     function(code) {
-                        alert("result: " + code);
+                        //alert("result: " + code);
                         that.getFilesystem(
                                 function(fileSystem) {
-                                    alert("gotFS");
+                                    //alert("gotFS");
                                     
                                     that.getFolder(fileSystem, folderName + "/tiles", function (folder) {
-                                        alert("na getfolder");
+                                        //alert("na getfolder");
                                         folder.getFile("text.html", {create: false}, function (fileEntry) {
-                                            alert("na getfile");
+                                            //alert("na getfile");
                                             fileEntry.file(function(file) {
-                                                alert("na entry");
+                                                //alert("na entry");
                                                 typeof that.success === 'function' && that.success();
-                                                alert("na success");
+                                                //alert("na success");
                                                 /*var reader = new FileReader();
                                                 reader.onloadend = function (evt) {
                                                     alert("Read as text");
@@ -96,19 +96,19 @@
                                                     
                                                 };*/
                                             }, function(error) {
-                                                alert("Failed to get file");
+                                                //alert("Failed to get file");
                                                 typeof that.fail === 'function' && that.fail(error);
                                             });
                                         }, function (error) {
-                                            alert("failed to get file: " + error.code);
+                                            //alert("failed to get file: " + error.code);
                                             typeof that.fail === 'function' && that.fail(error);
                                         });
                                     }, function (error) {
-                                        alert("failed to get folder: " + error.code);
+                                        //alert("failed to get folder: " + error.code);
                                         typeof that.fail === 'function' && that.fail(error);
                                     });
                                 }, function(error) {
-                                    alert("failed to get filesystem: " + error.code);
+                                    //alert("failed to get filesystem: " + error.code);
                                     typeof that.fail === 'function' && that.fail(error);
                                 });
                         
