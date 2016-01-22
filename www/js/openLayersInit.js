@@ -45,7 +45,8 @@ function init(watch, vlon, vlat) {
 			//alert(i + '>>' + capSplit[i]);
 			var field = '#' + capSplit[i];
 			//alert(field);
-			$(field).prop('checked', true);
+			$(field).attr('rel', 1);
+			$(field).addClass('cbClick');
 		}	
 	}
 	
@@ -336,7 +337,18 @@ $(document).ready(function()
 {
 	$(".cb").on("click", function()
 	{
-		$(this).triggerClass("cbClick")	
+		
+		if($(this).attr('rel') == 1)
+		{
+			$(this).removeClass("cbClick")	
+			$(this).attr('rel',0);
+		}
+		else
+		{
+			$(this).addClass("cbClick")	
+			$(this).attr('rel',1);
+		}
+		//alert($(this).attr('rel'));
 	});
 	if(!window.localStorage["capCodes"])
 	{
@@ -349,14 +361,12 @@ $(document).ready(function()
 		
 		window.localStorage["capCodes"] = '';
 		$(".cb").each(function()
-		{
-		
-			if( $(this).prop("checked") == true)
-			{
-				
-				window.localStorage["capCodes"] += '' + $(this).val() + ',';
+		{	
+			if( $(this).attr("rel") == "1")
+			{		
+				window.localStorage["capCodes"] += '' + $(this).attr("id") + ',';
 			}		
-		});	
+		});		
 		
 		if( $(".cbOfflineMaps").prop("checked") == true){
 			window.localStorage["useOfflineMaps"] = "true"
