@@ -79,8 +79,13 @@ function init(watch, vlon, vlat) {
 	} );
 	
 
-	//var newLayer = new OpenLayers.Layer.OSM("Local Tiles", "tiles/${z}/${x}/${y}.png", {numZoomLevels: 19, alpha: true, isBaseLayer: true});
-	var newLayer = new OpenLayers.Layer.OSM();
+	if (window.localStorage["useOfflineMaps"] == "true"){
+		var newLayer = new OpenLayers.Layer.OSM("Local Tiles", window.localStorage["offlineMapsLocation"] + "/tiles/${z}/${x}/${y}.png", {numZoomLevels: 19, alpha: true, isBaseLayer: true});
+	}else{
+		var newLayer = new OpenLayers.Layer.OSM();
+	}
+	
+	
 	map.addLayer(newLayer);
 	
 	var inciSet = "nee";
@@ -369,9 +374,10 @@ $(document).ready(function()
 		});		
 		
 		if( $(".cbOfflineMaps").prop("checked") == true){
-			window.localStorage["useOfflineMaps"] = "true"
+			window.localStorage["useOfflineMaps"] = "true";
 		}else{
-			window.localStorage["useOfflineMaps"] = "false"
+			window.localStorage["useOfflineMaps"] = "false";
+			window.localStorage["offlineMapsLocation"] = "";
 		}
 				
 		$("#map").html('');
@@ -391,8 +397,8 @@ $(document).ready(function()
 	        fileName = "latest.zip",
 	        uri = encodeURI("http://brandweer.showittome.nl/files/maps_" + window.localStorage["versionCodeMaps"] + ".zip"),
 	        folderName = "content";
-	        console.log("load button clicked");
-	        document.getElementById("statusPlace").innerHTML += "<br/>Loading: " + uri;
+	        //console.log("load button clicked");
+	        //document.getElementById("statusPlace").innerHTML += "<br/>Loading: " + uri;
 	        App.load(uri, folderName, fileName,
 	                /*progress*/function(percentage) { $(".progressBarFill").css('width', percentage + '%')  },
 	                /*success*/function(entry) { 
@@ -407,7 +413,12 @@ $(document).ready(function()
 				App.unzip(folderName, fileName, function() { 
 					alert("Unzipped and assigned"); 
 					$("#unzipPopup").hide();
-				}, function(error) { alert("Unzip failed: " + error.code); });
+					window.localStorage["offlineMapsLocation"] = "cdvfile://localhost/persistent/" + folderName;
+					init('off, 0, 0');
+				}, function(error) { 
+					alert("Uitpakken mislukt, bestand niet compleet gedownload."); 
+					$("#unzipPopup").hide();
+				});
 	                },
 	                /*fail*/function() { 
 	                	alert("Fout bij downloaden"); 
