@@ -25,7 +25,7 @@ function init(watch, vlon, vlat) {
 		if (window.localStorage["versionCodeMaps"]){
 			//alert(window.localStorage["versionCodeMaps"]);
 			 $.ajax({
-			        url: 'http://brandweer.showittome.nl/php/checkMapsVersion.php',
+			        url: 'http://api.brandweer.smapps.nl/php/checkMapsVersion.php',
 			        type: 'get',
 			        async: false,
 			        success: function(data) {
@@ -123,7 +123,7 @@ function init(watch, vlon, vlat) {
 	var markers;
 	
 	 $.ajax({
-	        url: 'json/markers.json',
+	        url: 'http://api.brandweer.smapps.nl/json/markers.json',
 	        type: 'get',
 	        async: false,
 	        success: function(html) {
@@ -134,7 +134,7 @@ function init(watch, vlon, vlat) {
 	//Loop through the markers array
 	var ii = 0;
 	for (var i=0; i<markers.length; i++) {
-	  console.log(i);
+	  //console.log(i);
 	  ii += 1;
 	   var lonX = markers[i][2];
 	   var latX = markers[i][1];
@@ -326,7 +326,7 @@ function updateIncident()
 	//alert(window.localStorage["capCodes"]);
 	$.ajax({
 		type: 'POST',
-		url: 'http://brandweer.showittome.nl/php/php_p2000_getLatest.php', 
+		url: 'http://api.brandweer.smapps.nl/php/php_p2000_getLatest.php', 
 		data: {capcodes: window.localStorage["capCodes"]},
 		async: false,
 		success: function(returnData)
@@ -340,10 +340,14 @@ function updateIncident()
 		//	gotoURLString = 's2.html';
 		}
 	});
-	var p2000_data = window.localStorage["laatsteMelding"].split("{}");
-	window.localStorage["pLng"] = p2000_data[0];
-	window.localStorage["pLat"] = p2000_data[1];
-	var p2000Txt = p2000_data[2];
+	var p2000Txt = 'Kies eerst een plaats voor p2000-meldingen';
+	if(window.localStorage["laatsteMelding"] != undefined)
+	{
+		var p2000_data = window.localStorage["laatsteMelding"].split("{}");
+		window.localStorage["pLng"] = p2000_data[0];
+		window.localStorage["pLat"] = p2000_data[1];
+		p2000Txt = p2000_data[2];
+	}
 	$(".lastReport").html( p2000Txt);
 }
 $(document).ready(function()
@@ -418,7 +422,7 @@ $(document).ready(function()
 	        var that = this,
 	        App = new DownloadApp(),
 	        fileName = "latest.zip",
-	        uri = encodeURI("http://brandweer.showittome.nl/files/maps_" + window.localStorage["versionCodeMaps"] + ".zip"),
+	        uri = encodeURI("http://api.brandweer.smapps.nl/files/maps_" + window.localStorage["versionCodeMaps"] + ".zip"),
 	        folderName = "content";
 	        //console.log("load button clicked");
 	        //document.getElementById("statusPlace").innerHTML += "<br/>Loading: " + uri;
@@ -454,7 +458,7 @@ $(document).ready(function()
 	        );
 		
 		 $.ajax({
-		        url: 'http://brandweer.showittome.nl/php/checkMapsVersion.php',
+		        url: 'http://api.brandweer.smapps.nl/php/checkMapsVersion.php',
 		        type: 'get',
 		        async: false,
 		        success: function(html) {
