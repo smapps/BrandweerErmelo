@@ -132,9 +132,10 @@ function init(watch, vlon, vlat) {
 	});
 
 	//Loop through the markers array
+	var ii = 0;
 	for (var i=0; i<markers.length; i++) {
 	  console.log(i);
-	  
+	  ii += 1;
 	   var lonX = markers[i][2];
 	   var latX = markers[i][1];
 	   var iconType = markers[i][3];
@@ -151,7 +152,7 @@ function init(watch, vlon, vlat) {
 				
 			vectorLayerMarkers.addFeatures(feature);
 		}else{
-		   descriptionMarker = "marker number " + markers[i][0];
+		   descriptionMarker = "marker number " + ii;
 		   
 			var feature = new OpenLayers.Feature.Vector(
 					new OpenLayers.Geometry.Point( lonX, latX ).transform(epsg4326, projectTo),
