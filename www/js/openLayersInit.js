@@ -123,7 +123,7 @@ function init(watch, vlon, vlat) {
 	var markers;
 	
 	 $.ajax({
-	        url: 'http://api.brandweer.smapps.nl/json/markers.json',
+	        url: './json/markers.json',
 	        type: 'get',
 	        async: false,
 	        success: function(html) {
