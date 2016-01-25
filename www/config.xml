@@ -40,7 +40,7 @@
 	<gap:plugin name="org.apache.cordova.file"/>
 	<gap:plugin name="org.apache.cordova.file-transfer"/>
 	<gap:plugin name="org.chromium.zip"/>
-	<gap:plugin name="com.mediamatrixdoo.keepscreenon"/>
+
 	
 
 	<icon src="./images/system/57.png" gap:platform="ios" width="57" height="57" />
