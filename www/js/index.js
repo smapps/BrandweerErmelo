@@ -22,7 +22,7 @@
 		//document.addEventListener('deviceready', getReady, false);
 		//return navigator.geolocation.getCurrentPosition();
 		init('off',0,0);
-		//keepscreenon.enable();
+		keepscreenon.enable();
 	}	
    
     // deviceready Event Handler
@@ -38,6 +38,6 @@
 	  else
 	  {
 		init('off',0,0);
-		//keepscreenon.enable();
+		keepscreenon.enable();
 	  }
 	}
