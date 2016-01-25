@@ -40,7 +40,7 @@
 	<gap:plugin name="org.apache.cordova.file"/>
 	<gap:plugin name="org.apache.cordova.file-transfer"/>
 	<gap:plugin name="org.chromium.zip"/>
-
+	<gap:plugin name="com.mediamatrixdoo.keepscreenon"/>
 	
 	PhoneGap-KeepScreenOn-plugin
 	
