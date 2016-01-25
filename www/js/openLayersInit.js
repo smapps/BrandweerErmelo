@@ -23,7 +23,7 @@ function init(watch, vlon, vlat) {
 	if (window.localStorage["useOfflineMaps"]=="true"){
 
 		if (window.localStorage["versionCodeMaps"]){
-			alert(window.localStorage["versionCodeMaps"]);
+			//alert(window.localStorage["versionCodeMaps"]);
 			 $.ajax({
 			        url: 'http://brandweer.showittome.nl/php/checkMapsVersion.php',
 			        type: 'get',
