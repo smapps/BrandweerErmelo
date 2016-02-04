@@ -389,7 +389,29 @@ $(document).ready(function()
 			$(this).addClass("cbClick");	
 			$(this).attr('rel',1);
 			window.localStorage["useOfflineMaps"] = "true";
-			$(".downloadMaps").show();
+			if(!window.localStorage["versionCodeMaps"])
+			{	
+				$(".downloadMaps").show();
+			}
+			else if(window.localStorage["versionCodeMaps"])
+			{
+				 $.ajax({
+				        url: 'http://api.brandweer.smapps.nl/php/checkMapsVersion.php',
+				        type: 'get',
+				        async: false,
+				        success: function(data) {
+					        //alert(data);
+				                if (window.localStorage["versionCodeMaps"] < data){
+					             	$(".downloadMaps").show();
+					             	$(".recenteKaartGebruikt").html("");
+				                }else
+				                {
+				                	$(".downloadMaps").hide();
+				                	$(".recenteKaartGebruikt").html("<p>U heeft de meest recente kaart.</p>");
+				                }
+				        }
+				});	
+			}
 		}
 		
 	});
@@ -430,7 +452,7 @@ $(document).ready(function()
 	        var that = this,
 	        App = new DownloadApp(),
 	        fileName = "latest.zip",
-	        uri = encodeURI("http://api.brandweer.smapps.nl/files/maps_" + window.localStorage["versionCodeMaps"] + ".zip"),
+	        uri = encodeURI("http://api.brandweer.smapps.nl/files/maps_latest.zip"),
 	        folderName = "content";
 	        //console.log("load button clicked");
 	        //document.getElementById("statusPlace").innerHTML += "<br/>Loading: " + uri;
