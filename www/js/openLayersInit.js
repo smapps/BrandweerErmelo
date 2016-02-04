@@ -1279,7 +1279,7 @@ $(document).ready(function()
 		        type: 'get',
 		        async: false,
 		        success: function(html) {
-	               // window.localStorage["versionCodeMaps"] = html;
+	                window.localStorage["versionCodeMaps"] = html;
 		        }
 		});	
 	});
