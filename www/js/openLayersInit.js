@@ -29,7 +29,7 @@ function init(watch, vlon, vlat) {
 			        type: 'get',
 			        async: false,
 			        success: function(data) {
-				        alert(data);
+				        //alert(data);
 		                if (window.localStorage["versionCodeMaps"] < data){
 			             	$(".downloadMaps").show();
 		                }
