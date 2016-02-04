@@ -5,6 +5,13 @@ var lat=52.2910937;
 var lon=5.606251;
 var zoom=15;
 
+function imageExists(url, callback) {
+  var img = new Image();
+  img.onload = function() { callback(true); };
+  img.onerror = function() { callback(false); };
+  img.src = url;
+}
+
 var map; //complex object of type OpenLayers.Map
 
 var style = {
@@ -150,7 +157,16 @@ function init(watch, vlon, vlat) {
 	   var descriptionMarker;
 	   
 		if (iconType==4){
-			descriptionMarker = '<img src="images/putten/' + markers[i][0] + '.JPG" style="width:100%">';
+			if(imageExists(imageUrl) == true)
+			{
+				descriptionMarker = '<img src="images/putten/' + markers[i][0] + '.JPG" style="width:100%">';
+			}
+			else
+			{
+				descriptionMarker = '<img src="noImage.png" style="width:100%">';
+			}
+
+			
 			
 			var feature = new OpenLayers.Feature.Vector(
 					new OpenLayers.Geometry.Point( lonX, latX ).transform(epsg4326, projectTo),
