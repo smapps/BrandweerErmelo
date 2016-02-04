@@ -64,7 +64,7 @@ function init(watch, vlon, vlat) {
 	
 		if(window.localStorage["useOfflineMaps"] == "true"){
 			 $(".cbOfflineMaps").attr('rel', 1);
-			 $(".cbOfflineMaps).addClass('cbClick');
+			 $(".cbOfflineMaps").addClass('cbClick');
 		}
 	
 	updateIncident();
