@@ -21,22 +21,28 @@ function init(watch, vlon, vlat) {
 		$("#popupSettings").show();
 	}
 	if (window.localStorage["useOfflineMaps"]=="true"){
-
+		
 		if (window.localStorage["versionCodeMaps"]){
-			//alert(window.localStorage["versionCodeMaps"]);
+			
 			 $.ajax({
 			        url: 'http://api.brandweer.smapps.nl/php/checkMapsVersion.php',
 			        type: 'get',
 			        async: false,
 			        success: function(data) {
 				        //alert(data);
-		                if (window.localStorage["versionCodeMaps"] < data){
-			             	$(".downloadMaps").show();
-		                }
+			                if (window.localStorage["versionCodeMaps"] < data){
+				             	$(".downloadMaps").show();
+				             	$(".recenteKaartGebruikt").html("");
+			                }else
+			                {
+			                	$(".downloadMaps").hide();
+			                	$(".recenteKaartGebruikt").html("<p>U heeft de meest recente kaart.</p>");
+			                }
 			        }
 			});	
 		}else{
 			$(".downloadMaps").show();
+			$(".recenteKaartGebruikt").html("");
 		}
 	}
 	
@@ -58,6 +64,7 @@ function init(watch, vlon, vlat) {
 	
 		if(window.localStorage["useOfflineMaps"] == "true"){
 			 $(".cbOfflineMaps").attr('rel', 1);
+			 $(".cbOfflineMaps).addClass('cbClick');
 		}
 	
 	updateIncident();
