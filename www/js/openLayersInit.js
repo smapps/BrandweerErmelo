@@ -93,7 +93,7 @@ function init(watch, vlon, vlat) {
 	
 
 	if (window.localStorage["useOfflineMaps"] == "true"){
-		alert(window.localStorage["offlineMapsLocation"] + "tiles/");
+		//alert(window.localStorage["offlineMapsLocation"] + "tiles/");
 		var newLayer = new OpenLayers.Layer.OSM("Local Tiles", window.localStorage["offlineMapsLocation"] + "tiles/${z}/${x}/${y}.png", {numZoomLevels: 19, alpha: true, isBaseLayer: true});
 	}else{
 		var newLayer = new OpenLayers.Layer.OSM();
@@ -473,7 +473,7 @@ $(document).ready(function()
 					//alert("Unzipped and assigned"); 
 					$("#unzipPopup").hide();
 					
-					init('off, 0, 0');
+					init('off', 0, 0);
 				}, function(error) { 
 					alert("Uitpakken mislukt, bestand niet compleet gedownload."); 
 					$("#unzipPopup").hide();
